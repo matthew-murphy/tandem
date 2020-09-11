@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PageNotFound from "../src/pages/PageNotFound";
 import './App.css';
+import Dashboard from "./components/home/Dashboard"
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import Home from "./components/home/Home"
+import { AuthProvider } from "./components/auth/Auth"
+import PrivateRoute from "./components/auth/PrivateRoute"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <AuthProvider>
+      <Router>
+      <React.Fragment>
+          <Switch>
+            <Route exact path="/" component={SignIn} />
+            <Route path="/SignIn" component={SignIn} />
+            <Route path="/SignUp" component={SignUp} />
+            <Route path="/Home" component={Home} />
+            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            <Route component={PageNotFound} />
+          </Switch>
+      </React.Fragment>
+      </Router>
+      </AuthProvider>
+    );
+  }
 }
-
 export default App;
+
