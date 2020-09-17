@@ -8,6 +8,7 @@ import SignUp from "./components/auth/SignUp";
 import Home from "./components/home/Home"
 import { AuthProvider } from "./components/auth/Auth"
 import PrivateRoute from "./components/auth/PrivateRoute"
+import List from "./components/home/List";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/SignIn" component={SignIn} />
             <Route path="/SignUp" component={SignUp} />
             <Route path="/Home" component={Home} />
+            <Route path='/list' component={List}/>
             <PrivateRoute exact path="/Dashboard" component={Dashboard} />
             <Route component={PageNotFound} />
           </Switch>
