@@ -5,12 +5,15 @@ const port = process.env.PORT || 5000;
 const server = require("http").Server(app);
 const fetch = require("node-fetch");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
+// const { info } = require("console");
+// const { parse } = require("path");
 // const admin = require("firebase-admin");
 // const db = admin.database();
 // const ref = db.ref("server/saving-data/fireblog");
 
 app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(cors);
 
 app.get("/api/getList", (req, res) => {
   var list = ["item1", "item2", "item3"];
@@ -27,21 +30,33 @@ app.get("/api/greeting", (req, res) => {
     ContentType: "application/json",
     Accept: "application/json",
   };
+
   const getUpsData = function (resp) {
-    fetch(url + upsId, { headers: headers })
+     const endpoint = "?locale=en_US"
+     fetch(url + upsId + endpoint, { headers: headers })
       .then(function (data) {
         return data.json();
       })
       .then(function (parsed) {
-        console.log(parsed)
-      // let trackResponse = parsed.trackResponse;
-      // let shipment = parsed.shipment;
-      // let UpsPackage = parsed.package; 
-      // let activity = parsed.activity;
-      // let deliveryDate = parsed.deliveryDate;
-      resp(JSON.stringify(parsed));
-        // trackResponse, shipment, UpsPackage, activity, deliveryDate
-        // );
+        console.log(parsed);
+        let trackResponse = parsed["trackResponse"];
+        console.log(trackResponse)
+        // let shipment = parsed.trackResponse["shipment"];
+        // console.log("ship => " + shipment)
+        // let UpsPackage = shipment[0];
+        // console.log("package => " + UpsPackage)
+        // let activity1 = shipment.activity;
+        // let deliveryDate = activity[0];
+        // console.log(deliveryDate)
+        let allData = [
+          parsed,
+          trackResponse,
+          // shipment,
+          // UpsPackage,
+          // activity1,
+          // deliveryDate,
+        ];
+        resp(allData);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -51,15 +66,16 @@ app.get("/api/greeting", (req, res) => {
   //   res.send(resp);
   // });
   getUpsData(function (resp) {
-    console.log(resp);
-    res.json(
-      { info: resp }
-      // { trackResponse: resp.trackResponse },
-      // { shipment: resp.shipment },
-      // { UpsPackage: resp.package },
-      // { activity: resp.activity },
-      // { deliveryDate: resp.deliveryDate }
-    )});
+    console.log("here", resp[0]);
+    res.send({
+      info: resp[0],
+      trackResponse: resp[1],
+      // shipment: resp[2],
+      // UpsPackage: resp[3],
+      // activity1: resp[4],
+      // deliveryDate: resp[5],
+    });
+  });
 });
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
@@ -106,7 +122,7 @@ app.get("/data", (request, response) => {
 // middleware
 
 // app.use(express.static("public"));
-app.use(cors);
+
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 // app.use('/', (req, res, next) => {
