@@ -1,114 +1,71 @@
 import React, { Component, FlatList, View, Item } from "react";
-import { Link } from "react-router-dom";
-import { json } from "body-parser";
-import { Table, Tab } from "semantic-ui-react";
+import { Table, Tab, Button, Form } from "semantic-ui-react";
+import Data from '../../Apprentice_TandemFor400_Data.json';
+import TriviaList from "./TriviaList";
 
 // test id 7798339175
 
 class Home extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
-      info: [],
-      trackResponse: [],
-      shipment: [],
-      UpsPackage: [],
-      activity: [],
-      deliveryDate: [],
-      upsId: "",
+      info: Data,
+      questNum: Data.length,
+      quest: [], 
+      display: [],
+      num: this.getRanArr(20)
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  upsCall() {
-    fetch(`/api/greeting?upsId=${encodeURIComponent(this.state.upsId)}`)
-      .then((response) => response.json())
-      .then((state) => {
-        console.log(state) //  <----------TEST------------------   
-        this.setState({
-          info: state.info,
-          trackResponse: state.trackResponse,
-          shipment: state.shipment,
-          UpsPackage: state.UpsPackage,
-          activity: state.activity,
-          deliveryDate: state.deliveryDate
-        })
-          console.log(this.state.info)  //    <----------TEST------------------ 
-          });
+  getRanArr(lngth) {
+    let arr = [];
+    do {
+        let ran = Math.floor(Math.random() * lngth); 
+        arr = arr.indexOf(ran) > -1 ? arr : arr.concat(ran);
+     } while (arr.length < lngth)
+     
+     return arr;
   }
-
   handleChange(event) {
-    this.setState({ upsId: event.target.value });
+    let start = this.state.num
+    this.setState({ 
+      display: this.state.info[this.state.num.pop()]
+    });
+    console.log(this.state.num)
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.upsCall()
+    this.handleChange()
+    this.setState({questNum: this.state.questNum++})
+    console.log(this.state.info)
+    console.log(this.state.quest)
   }
-  
+  componentDidMount() {
+    this.setState({num: this.state.num.slice(0, 10)})
+    this.handleChange()
+  }
   
   render() {
-    const myobj = this.state.info
-    const { 
-      info, 
-      trackResponse, 
-      shipment, 
-      upsPackage, 
-      activity, 
-      deliveryDate 
-    } = this.state
-
-    let arr = [];
-    Object.keys(info).forEach(function(key) {
-      arr.push(info[key]);
-    });
-
-
-
+    // const myobj = this.state.info
+    const { info } = this.state;
+    if (this.state.num.length === 0){
+      return <h1>Game Over</h1>
+    } else {
     return (
       <div className="App">
-        <h1>Project Home</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="upsId">Enter your UPS tracking number: </label>
-          <input
-            id="upsId"
-            type="text"
-            value={this.state.upsId}
-            onChange={this.handleChange}
+        <h1>Tandem Trivia</h1>
+          <Button secondary onClick={(event) => this.handleSubmit(event)}>Submit</Button>
+        <div>
+          <TriviaList 
+          list={this.state.display}
+          listQuestion={this.state.display.question}
+          listArr={this.state.display.incorrect}
+          listCorrect={this.state.display.correct}
           />
-          <button type="submit">Submit</button>
-        </form>
-        <Table singleLine>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Info</Table.HeaderCell>
-              <Table.HeaderCell>Track Response data</Table.HeaderCell>
-              <Table.HeaderCell>Shipment data</Table.HeaderCell>
-              <Table.HeaderCell>Package data</Table.HeaderCell>
-              <Table.HeaderCell>Activity data</Table.HeaderCell>
-              <Table.HeaderCell>Delivery Date data</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            <Table.Row>
-              {/* <Table.Cell>{info}</Table.Cell> */}
-              {/* <Table.Cell>{trackResponse}</Table.Cell> */}
-              
-    <Table.Cell>{this.state.info}</Table.Cell>
-    <Table.Cell>{Object.keys(myobj).map(obj=> obj)}</Table.Cell>
-              {/* <Table.Cell>{upsPackage}</Table.Cell> */}
-            </Table.Row>
-          </Table.Body>
-        </Table>
-        {/* <div>{myobj}</div> */}
-        {/* <p>{myobj}</p> */}
-        {/* Link to List.js*/}
-        {/* <Link to={"./list"}>
-          <button variant="raised">My List</button>
-        </Link> */}
+        </div>
       </div>
     );
-  }
+  }}
 }
 export default Home;
