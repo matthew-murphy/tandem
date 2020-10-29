@@ -59,9 +59,9 @@ class Home extends Component {
         <div>
           <TriviaList 
           list={this.state.display}
-          listQuestion={this.state.display.question}
-          listArr={this.state.display.incorrect}
-          listCorrect={this.state.display.correct}
+          question={this.state.display.question}
+          incorrect={this.state.display.incorrect}
+          correct={this.state.display.correct}
           />
         </div>
       </div>
