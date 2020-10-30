@@ -9,7 +9,7 @@ To Start:
 --->Install Dependecies:
     npm install & npm install @material-ui/core
 --->Start:
-    npm start (from inside client directory)
+    npm start 
 ____________________________________________________________
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
