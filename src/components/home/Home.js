@@ -1,5 +1,5 @@
 import React, { Component, FlatList, View, Item } from "react";
-import { Table, Tab, Button, Form } from "semantic-ui-react";
+import { Button, makeStyles } from "@material-ui/core";
 import Data from '../../Apprentice_TandemFor400_Data.json';
 import TriviaList from "./TriviaList";
 
@@ -55,7 +55,7 @@ class Home extends Component {
     return (
       <div className="App">
         <h1>Tandem Trivia</h1>
-          <Button secondary onClick={(event) => this.handleSubmit(event)}>Submit</Button>
+          <Button variant={"contained"} color={"primary"} onClick={(event) => this.handleSubmit(event)}>Next</Button>
         <div>
           <TriviaList 
           list={this.state.display}
