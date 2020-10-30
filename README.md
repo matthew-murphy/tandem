@@ -1,7 +1,17 @@
-Dependecies:
-npm install & npm install @material-ui/core
 
-<<<<<<< HEAD
+## This project was made for the tandem code challenge.
+
+- Matthew Murphy 10/30/2020
+
+___________________________________________________________
+To Start:
+
+--->Install Dependecies:
+    npm install & npm install @material-ui/core
+--->Start:
+    npm start (from inside client directory)
+____________________________________________________________
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -70,7 +80,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-=======
 # tandem
 Tandem Code Challenge
 
@@ -101,4 +110,3 @@ A user can view questions.
 Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
 A user can select only 1 answer out of the 4 possible answers.
 The correct answer must be revealed after a user has submitted their answer A user can see the score they received at the end of the round
->>>>>>> b13a0fd9c93780e38242a540785861fb4cc2235a
