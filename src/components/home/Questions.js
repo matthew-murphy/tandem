@@ -9,11 +9,14 @@ class Questions extends Component {
       answerArr: [],
       score: 0,
       selected: "",
+      check: ""
     };
   }
-  calculateAnswer(event) {
-    this.setState({ selected: event.target.value.toString() });
-    if (this.state.selected === this.props.correctAnswer) {
+  async calculateAnswer(event) {
+    await this.setState({ selected: event });
+    console.log(event)
+    console.log(this.state.correctAnswer)
+    if (this.state.selected == this.props.correctAnswer) {
       this.setState({ score: this.state.score + 1 });
     }
     console.log(this.state.selected);
@@ -22,43 +25,32 @@ class Questions extends Component {
   render() {
     console.log(this.props.wrongAnswers);
     console.log(this.props.correctAnswer);
-    let test = [];
+    let test = []
     test.push(this.props.wrongAnswers);
     test.push(this.props.correctAnswer);
     test.flat();
     test.sort();
     console.log(test);
-    // const useStyles = makeStyles((theme) => ({
-    //     root: {
-    //       "& > *": {
-    //         margin: theme.spacing(1),
-    //       },
-    //     },
-    //   }));
-    // const classes = useStyles();
     return (
       <div className="view">
         {/* Trivia Question string */}
         <h2>{this.props.title}</h2>
 
         <div>
-          {test
-            .flat()
-            .sort()
-            .map((element) => {
+          {test.flat().sort().map((element) => {
               return (
                 <Button
-                style={{margin: "1%"}}
+                  key={Math.floor(Math.random() * 1000000)}
+                  style={{ margin: "1%" }}
                   variant={"contained"}
-                  value={String(element)}
+                  value={element}
                   color={"secondary"}
-                  onClick={(e) => this.calculateAnswer(e)}
+                  onClick={() => this.calculateAnswer(element)}
                 >
                   {element}
                 </Button>
               );
             })}
-          {/* {loadup(this.props.wrongAnswers, this.props.correctAnswer)} */}
         </div>
       </div>
     );
