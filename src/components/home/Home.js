@@ -8,7 +8,7 @@ class Home extends Component {
     this.state = {
       info: Data,
       display: [],
-      num: this.getRanArr(20),
+      num: this.getRanArr(21),
       score: 0,
       selected: "",
       showAnswer: "",
