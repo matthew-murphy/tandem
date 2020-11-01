@@ -18,7 +18,7 @@ class App extends Component {
             <Route exact path="/" component={SignIn} />
             <Route path="/SignIn" component={SignIn} />
             <Route path="/SignUp" component={SignUp} />
-            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/Trivia" component={Dashboard} />
             <Route component={PageNotFound} />
           </Switch>
       </React.Fragment>

@@ -6,9 +6,10 @@ const PageNotFound = () => (
   <React.Fragment>
     <div id="PageNotFoundContainer">
       <div id="PageNotFoundMessage">
-        <Button variant="contained" color="primary" href="/">
+        <Button variant="contained" color="secondary" href="/Trivia">
           {" "}
-          Home{" "}
+          Home
+          {" "}
         </Button>
       </div>
     </div>

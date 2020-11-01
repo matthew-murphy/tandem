@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import app from "../../base";
 
-
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,19 +9,19 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user)
-      setPending(false)
+      setCurrentUser(user);
+      setPending(false);
     });
   }, []);
 
-  if(pending){
-    return <>Loading...</>
+  if (pending) {
+    return <>Loading...</>;
   }
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser
+        currentUser,
       }}
     >
       {children}
