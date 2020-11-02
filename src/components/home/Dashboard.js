@@ -23,13 +23,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Roboto",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#0225b2",
+    paddingBottom: "5vh"
   },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
+    padding: "0 8px"
   },
   title: {
     flexGrow: 1,
@@ -49,14 +50,18 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    paddingBottom: '20vh',
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
     width: "100%",
     backgroundColor: "#f4f4f7",
+    justifyContent: "center",
+    alignItems: "center",
+
   },
   fixedHeight: {
-    height: "100%",
+    height: "80vh",
   },
 }));
 
@@ -96,8 +101,6 @@ export default function Dashboard() {
       <main>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={1}>
-            {/* Track */}
             <Grid item xs={12} md={12} lg={12}>
               <Paper className={fixedHeightPaper}>
                 {/*  */}
@@ -105,7 +108,6 @@ export default function Dashboard() {
                 {/*  */}
               </Paper>
             </Grid>
-          </Grid>
         </Container>
       </main>
     </div>
