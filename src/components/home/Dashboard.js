@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#0225b2",
-    paddingBottom: "5vh"
+    // paddingBottom: "5vh"
   },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: "0 8px"
+    padding: "0 8px",
   },
   title: {
     flexGrow: 1,
@@ -46,11 +46,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
     justifyContent: "center",
     alignItems: "center",
-    width: "80vw",
+    width: "60vw",
+    height: "100vh",
   },
   paper: {
     padding: theme.spacing(2),
-    paddingBottom: '20vh',
+    paddingBottom: "20vh",
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
@@ -58,13 +59,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#f4f4f7",
     justifyContent: "center",
     alignItems: "center",
-
   },
   fixedHeight: {
     height: "80vh",
   },
 }));
 
+// Log out button
 function MenuItems() {
   return (
     <div>
@@ -78,6 +79,7 @@ function MenuItems() {
   );
 }
 
+// Nav bar and Main screen
 export default function Dashboard() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -99,15 +101,13 @@ export default function Dashboard() {
         </Toolbar>
       </AppBar>
       <main>
-        <div className={classes.appBarSpacer} />
+      <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-            <Grid item xs={12} md={12} lg={12}>
-              <Paper className={fixedHeightPaper}>
-                {/*  */}
-                <Home />
-                {/*  */}
-              </Paper>
-            </Grid>
+          <Paper className={fixedHeightPaper}>
+            {/*  */}
+            <Home />
+            {/*  */}
+          </Paper>
         </Container>
       </main>
     </div>
