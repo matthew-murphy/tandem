@@ -6,7 +6,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Home from "./Home";
 import app from "../../base";
@@ -101,7 +100,7 @@ export default function Dashboard() {
         </Toolbar>
       </AppBar>
       <main>
-      <div className={classes.appBarSpacer} />
+        <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Paper className={fixedHeightPaper}>
             {/*  */}
