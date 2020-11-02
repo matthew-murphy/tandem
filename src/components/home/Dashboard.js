@@ -45,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
     justifyContent: "center",
     alignItems: "center",
-    width: "60vw",
+    width: "100vw",
     height: "100vh",
+    maxWidth: "800"
   },
   paper: {
     padding: theme.spacing(2),
